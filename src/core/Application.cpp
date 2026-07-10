@@ -1,5 +1,5 @@
 #include "core/Application.hpp"
-
+#include "erase/EraseManager.hpp"
 #include <iostream>
 
 #include "device/DeviceManager.hpp"
@@ -9,11 +9,13 @@ void Application::run()
 {
     initialize();
 
-    scanDevices();
+scanDevices();
 
-    showDeviceHealth();
+selectDevice();
 
-    shutdown();
+showDeviceHealth();
+
+shutdown();
 }
 
 void Application::initialize()
@@ -35,7 +37,7 @@ void Application::scanDevices()
 
     DeviceManager manager;
 
-    auto devices =
+     devices =
         manager.scanDevices();
 
     for(const auto& device : devices)
@@ -59,8 +61,18 @@ void Application::showDeviceHealth()
 
     HealthManager manager;
 
-    SMARTInfo info =
-        manager.readHealth("/dev/nvme0");
+    
+    if(!deviceSelected)
+    {
+        std::cout
+        << "\nNo device selected.\n";
+
+        return;
+    }
+
+SMARTInfo info =
+    manager.readHealth(
+        selectedDevice.path);
 
     std::cout
         << "Temperature      : "
@@ -102,4 +114,59 @@ void Application::shutdown()
 {
     std::cout
         << "Application Finished.\n";
+}
+void Application::selectDevice()
+{
+    if(devices.empty())
+    {
+        std::cout
+            << "\nNo storage devices found.\n";
+
+        return;
+    }
+
+    std::cout
+        << "\n=================================\n";
+
+    std::cout
+        << " Select Device\n";
+
+    std::cout
+        << "=================================\n\n";
+
+    for(size_t i = 0; i < devices.size(); i++)
+    {
+        std::cout
+            << i + 1
+            << ". "
+            << devices[i].model
+            << " ("
+            << devices[i].path
+            << ")\n";
+    }
+
+    std::cout
+        << "\nChoice : ";
+
+    int choice;
+
+    std::cin >> choice;
+
+    if(choice < 1 || choice > static_cast<int>(devices.size()))
+    {
+        std::cout
+            << "\nInvalid Selection\n";
+
+        return;
+    }
+
+    selectedDevice =
+        devices[choice - 1];
+
+    deviceSelected = true;
+
+    std::cout
+        << "\nSelected : "
+        << selectedDevice.model
+        << "\n";
 }
