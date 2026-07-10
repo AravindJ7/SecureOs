@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/Aravind/SecureOs/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

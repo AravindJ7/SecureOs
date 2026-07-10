@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/secureos.dir/link.d CMakeFiles/secureos.dir/src/main.cpp.o CMakeFiles/secureos.dir/src/core/Application.cpp.o -o secureos

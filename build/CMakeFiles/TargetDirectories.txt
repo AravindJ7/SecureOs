@@ -1,0 +1,3 @@
+/home/Aravind/SecureOs/build/CMakeFiles/secureos.dir
+/home/Aravind/SecureOs/build/CMakeFiles/edit_cache.dir
+/home/Aravind/SecureOs/build/CMakeFiles/rebuild_cache.dir
