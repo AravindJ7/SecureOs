@@ -1,6 +1,7 @@
 #include "core/Application.hpp"
 #include "erase/EraseManager.hpp"
 #include <iostream>
+#include "verify/VerifyManager.hpp"
 
 #include "device/DeviceManager.hpp"
 #include "health/HealthManager.hpp"
@@ -261,8 +262,17 @@ void Application::eraseDevice()
 
 void Application::verifyErase()
 {
-    std::cout
-        << "\nVerify Erase (Coming Soon)\n";
+    if(!deviceSelected)
+    {
+        std::cout
+            << "\nNo device selected.\n";
+
+        return;
+    }
+
+    VerifyManager manager;
+
+    manager.start(selectedDevice);
 }
 
 void Application::generateReport()

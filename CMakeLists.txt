@@ -9,21 +9,48 @@ include_directories(include)
 
 add_executable(
     secureos
-    src/device/DeviceInfoReader.cpp
-    src/executor/CommandResult.cpp
-    src/executor/CommandRunner.cpp
-    src/erase/EraseManager.cpp
-    src/device/TransportDetector.cpp
-    src/health/SMARTInfo.cpp
-    src/health/SMARTReader.cpp
-    src/erase/EraseMethod.cpp
-    src/erase/EraseExecutor.cpp
-    src/device/Device.cpp
-    src/health/SMARTParser.cpp
-    src/health/HealthManager.cpp
-    src/device/DeviceClassifier.cpp
-    src/device/DeviceManager.cpp
-    src/device/DeviceScanner.cpp
+
+    # ==========================
+    # Core
+    # ==========================
     src/main.cpp
     src/core/Application.cpp
+
+    # ==========================
+    # Device
+    # ==========================
+    src/device/Device.cpp
+    src/device/DeviceManager.cpp
+    src/device/DeviceScanner.cpp
+    src/device/DeviceInfoReader.cpp
+    src/device/DeviceClassifier.cpp
+    src/device/TransportDetector.cpp
+
+    # ==========================
+    # Health
+    # ==========================
+    src/health/SMARTInfo.cpp
+    src/health/SMARTReader.cpp
+    src/health/SMARTParser.cpp
+    src/health/HealthManager.cpp
+
+    # ==========================
+    # Executor
+    # ==========================
+    src/executor/CommandResult.cpp
+    src/executor/CommandRunner.cpp
+
+    # ==========================
+    # Erase
+    # ==========================
+    src/erase/EraseMethod.cpp
+    src/erase/EraseExecutor.cpp
+    src/erase/EraseManager.cpp
+
+    # ==========================
+    # Verify
+    # ==========================
+    src/verify/VerifyResult.cpp
+    src/verify/VerifyEngine.cpp
+    src/verify/VerifyManager.cpp
 )
