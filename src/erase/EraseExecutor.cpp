@@ -1,5 +1,6 @@
 #include "erase/EraseExecutor.hpp"
-
+#include "executor/CommandRunner.hpp"
+#include "executor/ExecutionMode.hpp"
 std::string
 EraseExecutor::buildCommand(
     const Device& device,
@@ -37,4 +38,20 @@ EraseExecutor::buildCommand(
 
             return "";
     }
+}
+CommandResult
+EraseExecutor::preview(
+    const Device& device,
+    EraseMethod method)
+{
+    std::string command =
+        buildCommand(
+            device,
+            method);
+
+    CommandRunner runner;
+
+    return runner.run(
+        command,
+        ExecutionMode::PREVIEW);
 }

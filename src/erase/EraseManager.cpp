@@ -110,18 +110,17 @@ void EraseManager::start(const Device& device)
 
     EraseExecutor executor;
 
-    std::string command =
-        executor.buildCommand(
-            device,
-            method);
+
+    CommandResult result =
+    executor.preview(
+        device,
+        method);
+
+std::cout
+    << "\n"
+    << result.output
+    << "\n";
 
     std::cout
-        << "\nCommand Preview\n\n";
-
-    std::cout
-        << command
-        << "\n";
-
-    std::cout
-        << "\nExecution module coming next.\n";
+    << "\nPreview completed successfully.\n";
 }
